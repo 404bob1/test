@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIN Decoder</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="header">
+        <h1>NHTSA Vehicle Information Decoder</h1>
+        <p>Decode your Vehicle Identification Number (VIN) to get detailed vehicle specifications</p>
+    </div>
+    
+    <div class="container">
+        <div class="backend-config">
+            <h3>Backend API Configuration</h3>
+            <p>Enter the URL of your backend server that connects to the NHTSA API:</p>
+            <input type="text" id="backend-url" value="https://vin-decoder-api.onrender.com" placeholder="e.g., http://localhost:3000 or https://your-vin-api.com">
+            <button id="save-backend">Save</button>
+            <p><small>Note: You must deploy the Node.js backend server provided in this repository to use this application with the NHTSA API.</small></p>
+        </div>
+        
+        <div class="tabs">
+            <div class="tab active" data-tab="single-vin">Single VIN</div>
+            <div class="tab" data-tab="batch-vin">Batch Decode</div>
+            <div class="tab" data-tab="about">About VINs</div>
+        </div>
+        
+        <div class="tab-content active" id="single-vin">
+            <div class="info-box">
+                Enter your 17-character Vehicle Identification Number (VIN) to get detailed information about the vehicle. Partial VINs are also supported by using "*" for unknown characters.
+            </div>
+            
+            <div class="vin-input">
+                <input type="text" id="vin-input" placeholder="Enter VIN (e.g., 5UXWX7C5*BA)" maxlength="17">
+                <input type="number" id="year-input" placeholder="Model Year (optional)" min="1980" max="2050">
+                <button id="decode-button">Decode VIN</button>
+            </div>
+            
+            <div class="error" id="error-message"></div>
+            
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Decoding your VIN...</p>
+            </div>
+            
+            <div id="results"></div>
+        </div>
+        
+        <div class="tab-content" id="batch-vin">
+            <div class="info-box">
+                Enter multiple VINs (up to 50) for batch decoding. Use the format: VIN,ModelYear;VIN,ModelYear; (ModelYear is optional)
+            </div>
+            
+            <textarea id="batch-input" placeholder="Example: 5UXWX7C5*BA,2011;5YJSA3DS*EF,2015;"></textarea>
+            <button id="batch-decode-button">Decode Batch</button>
+            
+            <div class="error" id="batch-error-message"></div>
+            
+            <div class="loading" id="batch-loading">
+                <div class="spinner"></div>
+                <p>Decoding your VINs...</p>
+            </div>
+            
+            <div id="batch-results"></div>
+        </div>
+        
+        <div class="tab-content" id="about">
+            <h2>Understanding Vehicle Identification Numbers (VINs)</h2>
+            
+            <p>A Vehicle Identification Number (VIN) is a unique code assigned to each motor vehicle when it's manufactured. The VIN serves as the vehicle's fingerprint, as no two vehicles in operation have the same VIN.</p>
+            
+            <h3>VIN Structure</h3>
+            <p>A VIN consists of 17 characters (letters and numbers) that provide specific information about the vehicle:</p>
+            
+            <table>
+                <tr>
+                    <th>Positions</th>
+                    <th>Information</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>1-3</td>
+                    <td>World Manufacturer Identifier (WMI)</td>
+                    <td>Identifies the manufacturer and country of origin</td>
+                </tr>
+                <tr>
+                    <td>4-8</td>
+                    <td>Vehicle Descriptor Section</td>
+                    <td>Vehicle attributes like model, body style, engine type, etc.</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>Check Digit</td>
+                    <td>Used to verify the VIN's authenticity</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>Model Year</td>
+                    <td>Letter or number representing the vehicle's model year</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>Plant Code</td>
+                    <td>Identifies the manufacturing plant</td>
+                </tr>
+                <tr>
+                    <td>12-17</td>
+                    <td>Sequential Number</td>
+                    <td>Production sequence number assigned by the manufacturer</td>
+                </tr>
+            </table>
+            
+            <h3>VIN Location on Vehicles</h3>
+            <p>The VIN can typically be found in several locations on a vehicle:</p>
+            <ul>
+                <li>Driver's side dashboard (visible through the windshield)</li>
+                <li>Driver's side door jamb sticker</li>
+                <li>Engine block</li>
+                <li>Vehicle registration and insurance documents</li>
+            </ul>
+            
+            <h3>About This Tool</h3>
+            <p>This VIN decoder uses the NHTSA's Product Information Catalog Vehicle Listing (vPIC) API to decode VINs and provide detailed vehicle information. The data comes directly from manufacturer submissions to the NHTSA.</p>
+            
+            <h3>Setting Up the Backend</h3>
+            <p>To use this application with the actual NHTSA API, you need to set up the provided Node.js backend server:</p>
+            <ol>
+                <li>Clone or download the server code</li>
+                <li>Install dependencies with <code>npm install</code></li>
+                <li>Start the server with <code>npm start</code></li>
+                <li>Enter the server URL in the configuration section at the top of this page</li>
+            </ol>
+        </div>
+    </div>
+    
+    <footer>
+        <p>VIN Decoder Application | Using NHTSA vPIC API | <a href="https://github.com/yourusername/vin-decoder" target="_blank">View on GitHub</a></p>
+    </footer>
+    
+    <script src="js/app.js"></script>
+</body>
+</html>

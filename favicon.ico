@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Background -->
+  <rect width="100" height="100" rx="20" fill="#2c3e50"/>
+  
+  <!-- Car silhouette -->
+  <path d="M15,65 L20,45 C20,45 30,40 50,40 C70,40 80,45 80,45 L85,65 L90,70 L90,75 L85,75 L85,80 L75,80 L75,75 L25,75 L25,80 L15,80 L15,75 L10,75 L10,70 L15,65 Z" fill="#3498db"/>
+  
+  <!-- Windows -->
+  <path d="M30,45 L35,55 L65,55 L70,45 C70,45 60,42 50,42 C40,42 30,45 30,45 Z" fill="#ecf0f1"/>
+  
+  <!-- Wheels -->
+  <circle cx="30" cy="70" r="8" fill="#34495e"/>
+  <circle cx="30" cy="70" r="4" fill="#7f8c8d"/>
+  <circle cx="70" cy="70" r="8" fill="#34495e"/>
+  <circle cx="70" cy="70" r="4" fill="#7f8c8d"/>
+  
+  <!-- VIN text -->
+  <text x="50" y="60" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="white">VIN</text>
+</svg>
